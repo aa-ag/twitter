@@ -1,13 +1,17 @@
 #!/bin/bash
-read -p 'Enter your username: ' varu
+# read -p 'Enter your username: ' varu
 
-read -sp 'Enter your bearer token: ' vart
+# read -sp 'Enter your bearer token: ' vart
 
-echo '\n'
+# echo '\n'
 
-USERID=$(curl --request GET https://api.twitter.com/2/users/by/username/"$varu" \
---header 'Authorization: Bearer '"$vart" | jq -r '.data.id')
+source .env
+echo $USERNAME
+echo $BEARER_TOKEN
 
-echo $USERID
+# USERID=$(curl --request GET https://api.twitter.com/2/users/by/username/"$varu" \
+# --header 'Authorization: Bearer '"$vart" | jq -r '.data.id')
 
-echo '\n'
+# echo $USERID
+
+# echo '\n'
