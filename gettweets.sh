@@ -6,6 +6,6 @@ TWEET_COUNT=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/twee
 
 echo '\n'
 
-echo $TWEET_COUNT
+echo '@'$USERNAME ' has tweeted ' $TWEET_COUNT 'times.'
 
 echo '\n'
