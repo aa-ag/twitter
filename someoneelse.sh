@@ -1,6 +1,9 @@
 #!/bin/bash
 source .env
 
-curl --request GET https://api.twitter.com/2/users/by/username/elonmusk \
---header 'Authorization: Bearer '$BEARER_TOKEN | jq -r '.data.id'
+HANDLE=$"elonmusk"
 
+SOMEONESID=$(curl --request GET https://api.twitter.com/2/users/by/username/$HANDLE \
+--header 'Authorization: Bearer '$BEARER_TOKEN | jq -r '.data.id')
+
+echo $SOMEONESID
