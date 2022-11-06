@@ -6,5 +6,5 @@ do
     curl --request GET \
     'https://api.twitter.com/2/tweets/'$TWEET\
     '/retweeted_by?user.fields=created_at&expansions=pinned_tweet_id&tweet.fields=created_at' \
-    --header 'Authorization: Bearer '$BEARER_TOKEN
+    --header 'Authorization: Bearer '$BEARER_TOKEN  | jq -r .data.text
 done
