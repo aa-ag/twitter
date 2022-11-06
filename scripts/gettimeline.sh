@@ -1,7 +1,9 @@
 #!/bin/bash
 source .env
 
-TIMELINE=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
+ID='44196397'
+
+TIMELINE=$(curl --request GET 'https://api.twitter.com/2/users/'$ID'/tweets' \
 --header 'Authorization: Bearer '$BEARER_TOKEN)
 
 echo $TIMELINE
