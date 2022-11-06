@@ -1,11 +1,14 @@
 #!/bin/bash
 source .env
 
-TWEET_COUNT=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
---header 'Authorization: Bearer '$BEARER_TOKEN | jq -r '.meta.result_count')
+curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
+--header 'Authorization: Bearer '$BEARER_TOKEN
 
-echo '\n'
+# TWEET_COUNT=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
+# --header 'Authorization: Bearer '$BEARER_TOKEN | jq -r '.meta.result_count')
 
-echo '@'$USERNAME ' has tweeted ' $TWEET_COUNT 'times.'
+# echo '\n'
 
-echo '\n'
+# echo '@'$USERNAME ' has tweeted ' $TWEET_COUNT 'times.'
+
+# echo '\n'
