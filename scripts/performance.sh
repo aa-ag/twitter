@@ -6,12 +6,12 @@ TWEETS=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
 
 for TWEET in $TWEETS
 do
-echo $TWEET 
+# echo $TWEET 
 # curl --request GET 'https://api.twitter.com/2/tweets/'$TWEET \
 # --header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data.text"
 
-# curl --request GET 'https://api.twitter.com/2/tweets/'$TWEET'?tweet.fields=public_metrics' \
-# --header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data.public_metrics"
+curl --request GET 'https://api.twitter.com/2/tweets/'$TWEET'?tweet.fields=public_metrics' \
+--header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data.public_metrics"
 
-# echo '\n'
+echo '\n'
 done
