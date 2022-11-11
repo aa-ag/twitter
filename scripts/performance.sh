@@ -4,10 +4,9 @@ source .env
 TWEETS=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
 --header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data[].id")
 
-echo $TWEETS
-
-# for TWEET in "1480543699620618240" "1475963847076823040"
-# do 
+for TWEET in $TWEETS
+do
+echo $TWEET 
 # curl --request GET 'https://api.twitter.com/2/tweets/'$TWEET \
 # --header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data.text"
 
@@ -15,4 +14,4 @@ echo $TWEETS
 # --header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data.public_metrics"
 
 # echo '\n'
-# done
+done
