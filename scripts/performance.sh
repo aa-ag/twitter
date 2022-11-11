@@ -2,7 +2,7 @@
 source .env
 
 TWEETS=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
---header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data")
+--header 'Authorization: Bearer '$BEARER_TOKEN | jq ".data[].id")
 
 echo $TWEETS
 
