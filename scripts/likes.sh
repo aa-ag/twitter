@@ -1,15 +1,14 @@
 #!/bin/bash
 source .env
 
-DONE=4
+DONE=1
 
-while [ $DONE -gt 1 ];
+while (( $DONE != 0 ));
 do
-    echo 'Not Done.'
-    # R=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/liked_tweets' \
-    # --header 'Authorization: Bearer '$BEARER_TOKEN | jq)
-    # echo $R
-    ((DONE--))
+    R=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/liked_tweets' \
+    --header 'Authorization: Bearer '$BEARER_TOKEN | jq)
+    echo $R
+    ((DONE = 0))
 done
 
-echo "Done."
+echo "\n ^^^ Done."
