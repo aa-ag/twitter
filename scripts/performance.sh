@@ -1,7 +1,7 @@
 #!/bin/bash
 source .env
 
-TWEETS=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/tweets' \
+TWEETS=$(curl --request GET 'https://api.twitter.com/2/users/69008563/tweets' \
 --header 'Authorization: Bearer '$BEARER_TOKEN | jq -r '.data[].id')
 
 for TWEET in $TWEETS
