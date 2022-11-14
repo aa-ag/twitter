@@ -1,22 +1,21 @@
 #!/bin/bash
 source .env
-r=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/liked_tweets' \
+
+running=1
+
+total_likes=0
+
+while (( $running != 0 ));
+do
+    r=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/liked_tweets' \
     --header 'Authorization: Bearer '$BEARER_TOKEN) || exit
-# echo $r
+    # echo $r
+    likes_count=$(jq -r '.meta.result_count' <<< "$r")
+    total_likes+=likes_count
+    # next_token=$(jq -r '.meta.next_token' <<< "$r")
+    # echo $next_token
+    ((running = 0))
+done
 
-meta=$(jq -r '.meta' <<< "$r")
-echo $meta
-
-# running=1
-
-# while (( $running != 0 ));
-# do
-    # r=$(curl --request GET 'https://api.twitter.com/2/users/'$USERID'/liked_tweets' \
-    # --header 'Authorization: Bearer '$BEARER_TOKEN)
-    # # echo $r
-    # meta=$( jq -r '.meta' <<< "{$r}" )
-    # echo $meta
-    # ((running = 0))
-# done
-
-# echo "\n ^^^ Done."
+echo '@'$USERNAME' has liked '$likes_count' tweets.'
+echo "\n ^^^ Done."
