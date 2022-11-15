@@ -7,6 +7,7 @@ total_likes=0
 
 original_url='https://api.twitter.com/2/users/'$USERID'/liked_tweets'
 url_and_endpoint=$original_url
+token=0
 
 while (( $running != 0 ));
 do
@@ -14,13 +15,17 @@ do
     
     likes_count=$(jq -r '.meta.result_count' <<< "$r")
     
-    total_likes+=likes_count
+    total_likes+=$likes_count
     
     next_token=$(jq -r '.meta.next_token' <<< "$r")
-    url_and_endpoint=$original_url'&next_token='$next_token
-    echo $url_and_endpoint
+
+    if [ $token == $next_token ]; then
+        ((running = 0))
+    else
+        token=$next_token
+        url_and_endpoint=$original_url'&next_token='$next_token
+    fi
     
-    ((running = 0))
     echo '\n'
 done
 
