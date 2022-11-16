@@ -15,8 +15,12 @@ do
     
     likes_count=$(jq -r '.meta.result_count' <<< "$r")
     
-    total_likes+=$likes_count
-    
+    if [ -z "$likes_count" ]; then
+        break
+    else
+        total_likes=$(( $total_likes + $likes_count ))
+    fi
+
     next_token=$(jq -r '.meta.next_token' <<< "$r")
 
     if [ "$token" == "$next_token" ]; then
@@ -29,5 +33,5 @@ do
     echo '\n'
 done
 
-echo '@'$USERNAME' has liked '$likes_count' tweets.'
+echo '@'$USERNAME' has liked '$total_likes' tweets.'
 echo "\n ^^^ Done."
