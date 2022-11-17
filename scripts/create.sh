@@ -1,5 +1,6 @@
 #!/bin/bash
 source .env
 
-curl --request POST 'https://api.twitter.com/2/tweets' \
+curl -d '{"text": "Hello World!"}' -H "Content-Type: application/json" \
+-X POST 'https://api.twitter.com/2/tweets' \
 --header 'Authorization: Bearer '$BEARER_TOKEN
