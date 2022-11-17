@@ -1,6 +1,6 @@
 #!/bin/bash
 source .env
 
-curl -d '{"text": "Hello World!"}' -H "Content-Type: application/json" \
--X POST 'https://api.twitter.com/2/tweets' \
---header 'Authorization: Bearer '$BEARER_TOKEN
+curl -X POST "https://api.twitter.com/2/tweets" -H "Authorization: OAuth $OAUTH_SIGNATURE"
+
+# https://github.com/twitterdev/Twitter-API-v2-sample-code/blob/main/Manage-Tweets/create_tweet.py
